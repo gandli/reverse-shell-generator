@@ -36,6 +36,23 @@ interface Config {
   port: string;
 }
 
+// Get file extension based on shell type
+function getFileExtension(type: string): string {
+  if (type.startsWith("powershell")) return ".ps1";
+  if (type.startsWith("python")) return ".py";
+  if (type.startsWith("php")) return ".php";
+  if (type.startsWith("perl")) return ".pl";
+  if (type.startsWith("ruby")) return ".rb";
+  if (type.startsWith("nodejs")) return ".js";
+  if (type.startsWith("lua")) return ".lua";
+  if (type.startsWith("golang")) return ".go";
+  if (type.startsWith("rust")) return ".rs";
+  if (type.startsWith("java")) return ".java";
+  if (type.startsWith("csharp")) return ".cs";
+  if (type.startsWith("msfvenom")) return "";
+  return ".sh";
+}
+
 // ============================================================================
 // Shell Templates (40+ types)
 // ============================================================================
@@ -756,7 +773,7 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
                         const filePath = join(
                           homedir(),
                           "Downloads",
-                          `${cmd.type}_${Date.now()}.sh`,
+                          `${cmd.type}_${Date.now()}${getFileExtension(cmd.type)}`,
                         );
                         await writeFile(filePath, cmd.command);
                         showToast({
@@ -797,7 +814,7 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
                     />
                   </ActionPanel.Section>
                   <Action
-                    title="Re-enter Ip/port"
+                    title="Re-enter IP/Port"
                     icon={Icon.ArrowClockwise}
                     shortcut={{ modifiers: ["cmd"], key: "r" }}
                     onAction={pop}
