@@ -17,3 +17,22 @@
 - Implemented TypeScript with full type safety
 - Implemented form validation for IP addresses and port numbers
 - Implemented code quality enforcement with ESLint and Prettier
+
+## [Unreleased] - 2026-03-09
+
+### Added
+- add 5 more reverse shell templates
+- add 27 new reverse shell templates
+- add bind shell templates and more reverse shells
+- update extension icon with terminal/reverse-shell theme
+
+### Changed
+- Add Vitest test framework and unit tests
+- Initial commit: Reverse Shell Generator extension
+
+### Fixed
+- wrap C# template with PowerShell compile-and-run command
+- add prettier config, metadata folder, remove windows from nodejs
+- use correct file extensions when saving, fix title case
+- address PR review issues
+- resolve minimatch ReDoS vulnerability
