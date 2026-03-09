@@ -27,6 +27,7 @@
 - update extension icon with terminal/reverse-shell theme
 
 ### Changed
+- add GitHub Actions workflow for automatic changelog generation
 - Add Vitest test framework and unit tests
 - Initial commit: Reverse Shell Generator extension
 
