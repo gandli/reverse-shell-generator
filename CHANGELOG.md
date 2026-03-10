@@ -18,9 +18,10 @@
 - Implemented form validation for IP addresses and port numbers
 - Implemented code quality enforcement with ESLint and Prettier
 
-## [Unreleased] - 2026-03-09
+## [Unreleased] - 2026-03-10
 
 ### Added
+- add listener alternatives for nc templates
 - add 5 more reverse shell templates
 - add 27 new reverse shell templates
 - add bind shell templates and more reverse shells
@@ -37,3 +38,6 @@
 - use correct file extensions when saving, fix title case
 - address PR review issues
 - resolve minimatch ReDoS vulnerability
+
+### Documentation
+- update CHANGELOG.md [skip ci]
