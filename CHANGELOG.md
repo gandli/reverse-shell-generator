@@ -28,6 +28,7 @@
 - update extension icon with terminal/reverse-shell theme
 
 ### Changed
+- trigger CI re-run
 - add GitHub Actions workflow for automatic changelog generation
 - Add Vitest test framework and unit tests
 - Initial commit: Reverse Shell Generator extension
@@ -40,4 +41,5 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
