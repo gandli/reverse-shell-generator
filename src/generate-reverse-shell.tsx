@@ -68,7 +68,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "bash-exec",
@@ -79,7 +80,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "bash-196",
@@ -90,7 +92,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "bash-udp",
@@ -113,7 +116,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "bash-5",
@@ -124,7 +128,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "zsh",
@@ -135,7 +140,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "nc-busybox",
@@ -146,7 +152,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "nc-exe",
@@ -157,7 +164,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "ncat-exe",
@@ -168,7 +176,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "ncat-udp",
@@ -191,7 +200,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "bash-5",
@@ -202,7 +212,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "nc-standard",
@@ -213,7 +224,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "nc-fifo",
@@ -224,7 +236,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "nc-openbsd",
@@ -235,7 +248,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "ncat",
@@ -269,7 +283,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -293,7 +308,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "c-linux",
@@ -305,7 +321,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -329,7 +346,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "c-linux",
@@ -341,7 +359,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "haskell",
@@ -353,7 +372,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "telnet",
@@ -364,7 +384,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Shell Tools",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   // ========== Scripting Languages ==========
@@ -378,7 +399,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "python3",
@@ -390,7 +412,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "python-shortest",
@@ -402,7 +425,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "python-windows",
@@ -414,7 +438,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "php-exec",
@@ -425,7 +450,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "php-system",
@@ -436,7 +462,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "php-passthru",
@@ -447,7 +474,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "php-shell_exec",
@@ -458,7 +486,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -470,7 +499,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "php-pentestmonkey",
@@ -481,7 +511,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "perl-no-sh",
@@ -493,7 +524,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -506,7 +538,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "ruby-no-sh",
@@ -518,7 +551,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "perl",
@@ -530,7 +564,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "ruby",
@@ -542,7 +577,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "nodejs",
@@ -554,7 +590,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -566,7 +603,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "lua-2",
@@ -578,7 +616,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "python-2-var",
@@ -590,7 +629,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "lua",
@@ -602,7 +642,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "awk",
@@ -614,7 +655,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   // ========== Compiled Languages ==========
@@ -628,7 +670,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "rust",
@@ -640,7 +683,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -652,7 +696,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "dart",
@@ -663,7 +708,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "java",
@@ -675,7 +721,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -688,7 +735,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "java-3",
@@ -700,7 +748,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Compiled Languages",
     os: ["linux"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   // ========== Windows ==========
@@ -714,7 +763,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Windows",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "powershell-2",
@@ -726,7 +776,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Windows",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "powershell-base64",
@@ -738,7 +789,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Windows",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   {
@@ -751,7 +803,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Windows",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "powershell-4-tls",
@@ -774,7 +827,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Windows",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "csharp",
@@ -786,7 +840,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Windows",
     os: ["windows"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
 
   // ========== Bind Shells ==========
@@ -847,7 +902,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "openssl-rev",
@@ -872,7 +928,8 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux", "mac"],
-    listener: "nc -lvnp {PORT}",
+    listener: `nc -lvnp {PORT}
+# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
   },
   {
     type: "curl-rev",
