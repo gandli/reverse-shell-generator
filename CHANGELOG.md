@@ -34,7 +34,7 @@
 * Code quality enforcement with ESLint and Prettier
 
 
-## [Unreleased] - 2026-03-21
+## [Unreleased] - {PR_MERGE_DATE}
 
 ### Added
 - add listener alternatives for nc templates

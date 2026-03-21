@@ -196,7 +196,9 @@ export function getDeviconUrl(type: string): string {
     "powershell-2": "powershell/powershell-original.svg",
     "powershell-3": "powershell/powershell-original.svg",
     "powershell-4": "powershell/powershell-original.svg",
+    "powershell-4-tls": "powershell/powershell-original.svg",
     "powershell-5": "powershell/powershell-original.svg",
+    "windows-conpty": "windows8/windows8-original.svg",
     cmd: "windows8/windows8-original.svg",
 
     // Other
