@@ -28,6 +28,7 @@
 - update extension icon with terminal/reverse-shell theme
 
 ### Changed
+- Update README.md
 - Pull contributions
 - revert unused imports and fix action titles
 - Merge pull request #1 from gandli/dependabot/npm_and_yarn/npm_and_yarn-e5a595f223
@@ -48,6 +49,7 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
