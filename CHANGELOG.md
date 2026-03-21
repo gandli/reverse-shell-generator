@@ -33,7 +33,6 @@
 * Form validation for IP addresses and port numbers
 * Code quality enforcement with ESLint and Prettier
 
-
 ## [Unreleased] - 2026-03-21
 
 ### Added
@@ -60,6 +59,7 @@
 - Initial commit: Reverse Shell Generator extension
 
 ### Fixed
+- use LocalStorage for config persistence
 - correct action title casing for Re-enter IP/Port
 - correct action title casing for Re-enter IP/Port
 - address greptile-apps PR review comments
@@ -71,6 +71,7 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- update CHANGELOG.md [skip ci]
 - remove duplicate unreleased section from CHANGELOG
 - use {PR_MERGE_DATE} placeholder for initial release
 - update CHANGELOG.md [skip ci]
