@@ -18,7 +18,6 @@
 - Implemented form validation for IP addresses and port numbers
 - Implemented code quality enforcement with ESLint and Prettier
 
-
 ## [Unreleased] - 2026-03-21
 
 ### Added
@@ -29,6 +28,8 @@
 - update extension icon with terminal/reverse-shell theme
 
 ### Changed
+- Pull contributions
+- revert unused imports and fix action titles
 - Merge pull request #1 from gandli/dependabot/npm_and_yarn/npm_and_yarn-e5a595f223
 - **deps-dev**: bump flatted
 - trigger CI re-run
@@ -37,6 +38,7 @@
 - Initial commit: Reverse Shell Generator extension
 
 ### Fixed
+- correct action title casing for Re-enter IP/Port
 - address greptile-apps PR review comments
 - resolve ESLint and Prettier validation errors
 - wrap C# template with PowerShell compile-and-run command
@@ -46,6 +48,7 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
