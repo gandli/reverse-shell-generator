@@ -1156,7 +1156,7 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
                         />
                       </ActionPanel.Section>
                       <Action
-                        title="Re-enter Ip/port"
+                        title="Re-enter IP/Port"
                         icon={Icon.ArrowClockwise}
                         shortcut={{ modifiers: ["cmd"], key: "r" }}
                         onAction={pop}
