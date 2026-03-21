@@ -1,4 +1,4 @@
-import { ActionPanel, Action, Form, List, useNavigation, showToast, Toast, Icon, preferences } from "@raycast/api";
+import { ActionPanel, Action, Form, List, useNavigation, showToast, Toast, Icon, LocalStorage } from "@raycast/api";
 import { useState, useEffect } from "react";
 import { writeFile } from "fs/promises";
 import { homedir } from "os";
@@ -933,21 +933,21 @@ function groupByOS(commands: ShellTemplate[]): Record<string, ShellTemplate[]> {
 }
 
 // ============================================================================
-// Preferences API Functions
+// LocalStorage Functions
 // ============================================================================
 
 const STORAGE_KEY_IP = "lastIP";
 const STORAGE_KEY_PORT = "lastPort";
 
-function loadConfig(): Config {
-  const ip = preferences[STORAGE_KEY_IP] || "10.10.10.10";
-  const port = preferences[STORAGE_KEY_PORT] || "9001";
+async function loadConfig(): Promise<Config> {
+  const ip = (await LocalStorage.getItem<string>(STORAGE_KEY_IP)) || "10.10.10.10";
+  const port = (await LocalStorage.getItem<string>(STORAGE_KEY_PORT)) || "9001";
   return { ip, port };
 }
 
-function saveConfig(config: Config): void {
-  preferences[STORAGE_KEY_IP] = config.ip;
-  preferences[STORAGE_KEY_PORT] = config.port;
+async function saveConfig(config: Config): Promise<void> {
+  await LocalStorage.setItem(STORAGE_KEY_IP, config.ip);
+  await LocalStorage.setItem(STORAGE_KEY_PORT, config.port);
 }
 
 // ============================================================================
@@ -1183,12 +1183,13 @@ export default function Command() {
 
   // Load configuration in background
   useEffect(() => {
-    const config = loadConfig();
-    setIp(config.ip);
-    setPort(config.port);
+    loadConfig().then((config) => {
+      setIp(config.ip);
+      setPort(config.port);
+    });
   }, []);
 
-  function handleSubmit(values: FormValues) {
+  async function handleSubmit(values: FormValues) {
     // Validate IP
     if (!isValidIP(values.ip)) {
       setIpError("Invalid IP address format");
@@ -1206,7 +1207,7 @@ export default function Command() {
     setPortError(undefined);
 
     // Save configuration
-    saveConfig({ ip: values.ip, port: values.port });
+    await saveConfig({ ip: values.ip, port: values.port });
 
     // Navigate to commands list page
     push(<ShowAllCommands ip={values.ip} port={values.port} />);

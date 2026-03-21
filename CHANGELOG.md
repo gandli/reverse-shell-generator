@@ -7,7 +7,6 @@
 * OS filter icons using devicon.dev (Linux, Windows, macOS)
 
 ### 💎 IMPROVEMENTS
-* Migrated from LocalStorage to Preferences API for better store approval
 * Replaced emoji icons with professional devicon.dev SVG icons
 * Improved code quality with ESLint and Prettier
 
