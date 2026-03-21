@@ -28,6 +28,8 @@
 - update extension icon with terminal/reverse-shell theme
 
 ### Changed
+- Merge pull request #1 from gandli/dependabot/npm_and_yarn/npm_and_yarn-e5a595f223
+- **deps-dev**: bump flatted
 - trigger CI re-run
 - add GitHub Actions workflow for automatic changelog generation
 - Add Vitest test framework and unit tests
@@ -42,6 +44,8 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- update CHANGELOG.md [skip ci]
+- update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
