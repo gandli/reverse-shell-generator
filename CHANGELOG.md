@@ -15,7 +15,7 @@
 * Fixed `sqlite3-nc` template missing required fields
 * Fixed various template inconsistencies
 
-## 1.0.0 - Initial Release
+## 1.0.0 - {PR_MERGE_DATE}
 
 ### ✨ NEW
 * Support for 40+ reverse shell types across multiple categories
