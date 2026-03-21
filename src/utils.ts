@@ -180,6 +180,7 @@ export function getDeviconUrl(type: string): string {
     nodejs: "nodejs/nodejs-original.svg",
     "nodejs-2": "nodejs/nodejs-original.svg",
     "lua-2": "lua/lua-original.svg",
+    lua: "lua/lua-original.svg",
 
     // Compiled Languages
     golang: "go/go-original.svg",
