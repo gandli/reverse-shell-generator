@@ -33,7 +33,6 @@
 * Form validation for IP addresses and port numbers
 * Code quality enforcement with ESLint and Prettier
 
-
 ## [Unreleased] - 2026-03-21
 
 ### Added
@@ -60,6 +59,7 @@
 - Initial commit: Reverse Shell Generator extension
 
 ### Fixed
+- add lua icon mapping and use PR_MERGE_DATE in CHANGELOG
 - use LocalStorage for config persistence
 - correct action title casing for Re-enter IP/Port
 - correct action title casing for Re-enter IP/Port
@@ -72,6 +72,7 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- update CHANGELOG.md [skip ci]
 - clean up CHANGELOG
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
