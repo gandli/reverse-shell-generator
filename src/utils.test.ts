@@ -13,6 +13,7 @@ import {
   generateCommand,
   groupBySubcategory,
   getOSTagColor,
+  getDeviconUrl,
   type ShellTemplate,
 } from "./utils";
 
@@ -85,6 +86,30 @@ describe("getFileExtension", () => {
     expect(getFileExtension("bash")).toBe(".sh");
     expect(getFileExtension("nc")).toBe(".sh");
     expect(getFileExtension("unknown")).toBe(".sh");
+  });
+});
+
+// ============================================================================
+// getDeviconUrl Tests
+// ============================================================================
+
+describe("getDeviconUrl", () => {
+  it("returns the PowerShell icon for the TLS PowerShell template", () => {
+    expect(getDeviconUrl("powershell-4-tls")).toBe(
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
+    );
+  });
+
+  it("returns the Windows icon for the ConPty template", () => {
+    expect(getDeviconUrl("windows-conpty")).toBe(
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg",
+    );
+  });
+
+  it("falls back to the Linux icon for unknown template types", () => {
+    expect(getDeviconUrl("unknown-template")).toBe(
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+    );
   });
 });
 
