@@ -40,9 +40,11 @@
   },
   "scripts": {
     "build": "ray build --skip-types -e dist -o dist",
+    "ci": "bun run test && bun run lint && bun run build",
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
+    "screenshots:update": "bun run scripts/update-screenshots.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",

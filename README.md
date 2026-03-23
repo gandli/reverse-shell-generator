@@ -145,21 +145,55 @@ reverse-shell-generator/
 ### Running Linting
 
 ```bash
-# Check code style
-npm run lint
-
-# Auto-fix issues
-npm run fix-lint
+bun run lint
+bun run fix-lint
 ```
 
 ### Building
 
 ```bash
-# Build production version
-npm run build
+bun run build
+```
 
-# Publish to Raycast Store
-npm run publish
+### CI Validation
+
+This repository includes a GitHub Actions workflow that automatically runs:
+
+- `bun run test`
+- `bun run lint`
+- `bun run build`
+
+for every pull request and for pushes to `main` and `ext/**`.
+
+### Update Store Screenshots
+
+Use the local one-command workflow when you want to refresh the Raycast Store screenshots:
+
+```bash
+bun run screenshots:update
+```
+
+What it does:
+
+1. Backs up the current screenshots from `metadata/` into `metadata/backups/<timestamp>/`
+2. Waits for you to update the screenshots with Raycast's official `Window Capture` + `Save to Metadata`
+3. Detects which screenshots changed
+4. Runs `test`, `lint`, and `build` automatically
+
+Recommended flow:
+
+1. Run `bun run screenshots:update`
+2. In Raycast, open the extension in development mode
+3. Use `Window Capture`
+4. Enable `Save to Metadata`
+5. Replace the store screenshots, then return to the terminal and press Enter
+
+The backup folder is ignored by Git, so you can keep local screenshot history without polluting commits.
+
+### Publishing
+
+```bash
+bun run publish
 ```
 
 ## 🤝 Contributing

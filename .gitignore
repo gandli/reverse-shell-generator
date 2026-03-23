@@ -6,6 +6,9 @@ dist/
 coverage/
 *.tsbuildinfo
 
+# Screenshot backups
+metadata/backups/
+
 # macOS
 .DS_Store
 .AppleDouble
