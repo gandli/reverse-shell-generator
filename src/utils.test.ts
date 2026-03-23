@@ -93,6 +93,12 @@ describe("getFileExtension", () => {
 // ============================================================================
 
 describe("getDeviconUrl", () => {
+  it("returns the PowerShell icon for the base64 PowerShell template", () => {
+    expect(getDeviconUrl("powershell-base64")).toBe(
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
+    );
+  });
+
   it("returns the PowerShell icon for the TLS PowerShell template", () => {
     expect(getDeviconUrl("powershell-4-tls")).toBe(
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
