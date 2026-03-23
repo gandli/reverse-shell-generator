@@ -213,30 +213,6 @@ export function getDeviconUrl(type: string): string {
 }
 
 /**
- * Generate command with replaced placeholders
- * Handles special case for powershell-base64: decode, replace, then re-encode
- */
-export function generateCommand(template: ShellTemplate, ip: string, port: string): ShellTemplate {
-  // Special handling for powershell-base64: decode, replace, then re-encode
-  if (template.type === "powershell-base64") {
-    const decoded = base64Decode(template.command);
-    const replaced = replacePlaceholders(decoded, ip, port);
-    const encoded = base64Encode(replaced);
-    return {
-      ...template,
-      command: encoded,
-      listener: template.listener ? replacePlaceholders(template.listener, ip, port) : undefined,
-    };
-  }
-
-  return {
-    ...template,
-    command: replacePlaceholders(template.command, ip, port),
-    listener: template.listener ? replacePlaceholders(template.listener, ip, port) : undefined,
-  };
-}
-
-/**
  * Group templates by subcategory
  */
 export function groupBySubcategory(templates: ShellTemplate[]): Record<string, ShellTemplate[]> {

