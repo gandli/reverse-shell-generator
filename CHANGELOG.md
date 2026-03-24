@@ -2,21 +2,19 @@
 
 ## 1.1.0 - {PR_MERGE_DATE}
 
-### ✨ NEW
+### NEW
 * Support for 66+ reverse shell types
 * OS filter icons using devicon.dev (Linux, Windows, macOS)
 
-### 💎 IMPROVEMENTS
+### IMPROVEMENTS
 * Replaced emoji icons with professional devicon.dev SVG icons
 * Improved code quality with ESLint and Prettier
 
-### 🐞 FIXES
+### FIXES
 * Fixed `sqlite3-nc` template missing required fields
 * Fixed various template inconsistencies
 
 ## 1.0.0 - {PR_MERGE_DATE}
-
-### ✨ NEW
 * Support for 40+ reverse shell types across multiple categories
 * Smart categorization system (Shell Tools, Scripting Languages, Compiled Languages, Windows, MSFVenom Payloads)
 * OS filtering functionality for Linux, Windows, and macOS
@@ -33,13 +31,11 @@
 * Form validation for IP addresses and port numbers
 * Code quality enforcement with ESLint and Prettier
 
-
 ## [Unreleased] - {PR_MERGE_DATE}
 
 ### Added
 - add listener alternatives for nc templates
 - add 5 more reverse shell templates
-- add 27 new reverse shell templates
 - add bind shell templates and more reverse shells
 - update extension icon with terminal/reverse-shell theme
 
@@ -47,11 +43,8 @@
 - migrate to Preferences API and devicon icons
 - update action titles from contributions
 - Pull contributions
-- Pull contributions
 - revert unused imports and fix action titles
 - Update README.md
-- Pull contributions
-- revert unused imports and fix action titles
 - Merge pull request #1 from gandli/dependabot/npm_and_yarn/npm_and_yarn-e5a595f223
 - **deps-dev**: bump flatted
 - trigger CI re-run
@@ -62,7 +55,6 @@
 ### Fixed
 - add lua icon mapping and use PR_MERGE_DATE in CHANGELOG
 - use LocalStorage for config persistence
-- correct action title casing for Re-enter IP/Port
 - correct action title casing for Re-enter IP/Port
 - address greptile-apps PR review comments
 - resolve ESLint and Prettier validation errors
@@ -75,22 +67,8 @@
 ### Documentation
 - final CHANGELOG cleanup
 - update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
 - clean up CHANGELOG
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
 - remove duplicate unreleased section from CHANGELOG
 - use {PR_MERGE_DATE} placeholder for initial release
-- update CHANGELOG.md [skip ci]
 - update CHANGELOG to follow Raycast format
-- update CHANGELOG.md [skip ci]
 - update CHANGELOG.md with v1.1.0 release notes
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
-- update CHANGELOG.md [skip ci]
