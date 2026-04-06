@@ -96,7 +96,7 @@
 - update CHANGELOG.md [skip ci]
 
 
-## [Unreleased] - 2026-03-21
+## [Unreleased] - {PR_MERGE_DATE}
 
 ### Added
 - add listener alternatives for nc templates

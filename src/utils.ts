@@ -195,9 +195,8 @@ export function getDeviconUrl(type: string): string {
     "powershell-1": "powershell/powershell-original.svg",
     "powershell-2": "powershell/powershell-original.svg",
     "powershell-3": "powershell/powershell-original.svg",
-    "powershell-4": "powershell/powershell-original.svg",
+    "powershell-base64": "powershell/powershell-original.svg",
     "powershell-4-tls": "powershell/powershell-original.svg",
-    "powershell-5": "powershell/powershell-original.svg",
     "windows-conpty": "windows8/windows8-original.svg",
     cmd: "windows8/windows8-original.svg",
 
@@ -210,30 +209,6 @@ export function getDeviconUrl(type: string): string {
 
   const iconPath = iconMap[type] || "linux/linux-original.svg";
   return `${baseUrl}/${iconPath}`;
-}
-
-/**
- * Generate command with replaced placeholders
- * Handles special case for powershell-base64: decode, replace, then re-encode
- */
-export function generateCommand(template: ShellTemplate, ip: string, port: string): ShellTemplate {
-  // Special handling for powershell-base64: decode, replace, then re-encode
-  if (template.type === "powershell-base64") {
-    const decoded = base64Decode(template.command);
-    const replaced = replacePlaceholders(decoded, ip, port);
-    const encoded = base64Encode(replaced);
-    return {
-      ...template,
-      command: encoded,
-      listener: template.listener ? replacePlaceholders(template.listener, ip, port) : undefined,
-    };
-  }
-
-  return {
-    ...template,
-    command: replacePlaceholders(template.command, ip, port),
-    listener: template.listener ? replacePlaceholders(template.listener, ip, port) : undefined,
-  };
 }
 
 /**
