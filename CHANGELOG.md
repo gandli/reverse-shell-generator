@@ -160,8 +160,7 @@
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 
-
-## [Unreleased] - 2026-04-06
+## [Unreleased] - 2026-08-17
 
 ### Added
 - add listener alternatives for nc templates
@@ -171,6 +170,7 @@
 - update extension icon with terminal/reverse-shell theme
 
 ### Changed
+- **deps**: bump the npm_and_yarn group across 1 directory with 1 update (#2)
 - migrate to Preferences API and devicon icons
 - update action titles from contributions
 - Pull contributions
@@ -203,6 +203,7 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - final CHANGELOG cleanup
