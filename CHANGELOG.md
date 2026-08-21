@@ -160,7 +160,7 @@
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 
-## [Unreleased] - 2026-08-17
+## [Unreleased] - 2026-08-21
 
 ### Added
 - add listener alternatives for nc templates
@@ -203,6 +203,8 @@
 - resolve minimatch ReDoS vulnerability
 
 ### Documentation
+- refresh README (#3)
+- update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
 - update CHANGELOG.md [skip ci]
