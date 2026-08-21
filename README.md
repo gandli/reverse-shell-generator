@@ -131,7 +131,7 @@ Sort commands by different dimensions:
 
 ### Project Structure
 
-```
+```text
 reverse-shell-generator/
 ├── src/
 │   └── generate-reverse-shell.tsx  # Main logic
@@ -186,9 +186,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For questions or suggestions, please contact us through:
 
 - Submit an [Issue](https://github.com/raycast/extensions/issues)
-
----
-
-<div align="center">
-Made with ❤️ for the Security Community
-</div>
